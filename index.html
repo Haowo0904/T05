@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TV Energy | D3 dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/d3.v7.min.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/scatter.js" defer></script>
+  <script src="js/donut.js" defer></script>
+  <script src="js/bar.js" defer></script>
+  <script src="js/line.js" defer></script>
+</head>
+<body>
+  <header class="masthead"><a href="#">ENERGY / EXPLORER</a><span>COS30045 · T05</span></header>
+  <main>
+    <section class="intro">
+      <p class="eyebrow">THE ENERGY BEHIND THE SCREEN</p>
+      <h1>Small screen.<br>Big energy picture.</h1>
+      <p>Explore how TV efficiency, screen technology and electricity prices relate to energy use. Four views of the supplied class datasets, brought together with D3.</p>
+      <div class="intro-tags"><span>01 / Efficiency</span><span>02 / Technology</span><span>03 / Electricity prices</span></div>
+    </section>
+    <div class="dashboard">
+      <section class="card wide" aria-labelledby="scatter-title">
+        <div class="card-heading"><div><p class="eyebrow">01 / SCATTER PLOT</p><h2 id="scatter-title">Does a higher star rating use less energy?</h2></div><label>Screen technology<select id="technology"><option value="All">All technologies</option><option>LCD</option><option>LED</option><option>OLED</option></select></label></div>
+        <p class="description">Each point is a supplied TV record. Screen sizes vary, so this is not a like-for-like comparison.</p>
+        <div class="legend"><span class="lcd">LCD</span><span class="led">LED</span><span class="oled">OLED</span></div>
+        <div id="scatter" class="chart" aria-live="polite"></div><p class="note" id="scatter-note">Loading TV records…</p>
+        <details><summary>Explore the data</summary><div id="scatter-table" class="table-wrap"></div></details>
+      </section>
+      <section class="card" aria-labelledby="donut-title">
+        <p class="eyebrow">02 / DONUT CHART · ALL SIZES</p><h2 id="donut-title">Energy by screen technology</h2>
+        <p class="description">Relative shares of the three technology means in the all-sizes dataset.</p>
+        <div id="donut" class="chart"></div><div id="donut-legend" class="value-legend"></div>
+        <p class="note">These are shares of summed means, not shares of total TV energy use or market share. The source provides means only.</p>
+        <details><summary>Explore the data</summary><div id="donut-table" class="table-wrap"></div></details>
+      </section>
+      <section class="card" aria-labelledby="bar-title">
+        <p class="eyebrow">03 / BAR CHART · 55-INCH TVs</p><h2 id="bar-title">Same size. Different energy use.</h2>
+        <p class="description">Mean labelled annual consumption, comparing technologies at the same screen size.</p>
+        <div id="bar" class="chart"></div><p class="note">A zero baseline preserves the relative sizes of the bars. Values are kWh per year.</p>
+        <details><summary>Explore the data</summary><div id="bar-table" class="table-wrap"></div></details>
+      </section>
+      <section class="card wide" aria-labelledby="line-title">
+        <p class="eyebrow">04 / LINE CHART · 1998–2024</p><h2 id="line-title">The changing price of electricity</h2>
+        <p class="description">Annual average spot electricity price across Queensland, New South Wales, Victoria and South Australia.</p>
+        <div id="line" class="chart"></div><p class="note">AUD per megawatt hour · Uses the supplied average column, which excludes Tasmania and Snowy. Wholesale spot prices are not household retail tariffs.</p>
+        <details><summary>Explore the data</summary><div id="line-table" class="table-wrap"></div></details>
+      </section>
+    </div>
+    <footer><span>Source: supplied COS30045 T05 CSV datasets.</span><span>Built with D3.js · Hover or tap chart marks for details.</span></footer>
+  </main>
+  <div id="tooltip" role="tooltip" hidden></div>
+</body>
+</html>
